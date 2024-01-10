@@ -1,12 +1,14 @@
 import { LitElement, html, css } from 'lit';
 import { Router } from '@vaadin/router';
-import { BASE } from '../../app';
+
 import repairController from '../../controller/RepairController';
 
 import './RepairAssignmentForm';
 import './CustomerForm';
 import './RepairExecution';
 import './RepairCompletion';
+
+const BASE_URL = import.meta.env.BASE_URL;
 
 export default class RepairForm extends LitElement {
   static get styles() {
@@ -61,7 +63,7 @@ export default class RepairForm extends LitElement {
 
     repairController.addRepair(formData)
       .then((data) => {
-        Router.go(`${BASE}/`);
+        Router.go(BASE_URL);
       });
   }
 

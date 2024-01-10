@@ -1,5 +1,4 @@
 import { LitElement, html } from 'lit';
-import { BASE } from '../../app';
 import '../components/HeaderBar';
 import '../components/ToDoList';
 
@@ -9,7 +8,7 @@ export default class HomePage extends LitElement {
       <header-bar></header-bar>
       <main>
         <todo-list></todo-list>
-        <a href="${BASE}/repair-form">
+        <a href="repair-form">
           <button>Nieuwe Reparatie</button>
         </a>
       </main>
