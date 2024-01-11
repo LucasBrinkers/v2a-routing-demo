@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
-import { router } from '../../app';
-import repairController from '../../controller/RepairController';
+import { router } from '/@/app';
+import repairController from '/@/controller/RepairController';
 
 export default class RepairCard extends LitElement {
   static get styles() {
