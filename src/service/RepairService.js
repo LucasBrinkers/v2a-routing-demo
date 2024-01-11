@@ -1,3 +1,5 @@
+import { from } from 'rxjs';
+
 const KEY = 'repairs';
 
 class RepairService {
@@ -36,15 +38,17 @@ class RepairService {
     return new Promise((resolve, reject) => {
       const repairs = JSON.parse(window.localStorage.getItem(KEY)) || [];
       const repair = repairs.find((repair) => repair.id === id);
-      resolve(repair);
+
+      if (repair) {
+        resolve(repair);
+      } else {
+        reject('Repair not found');
+      }
     });
   }
 
   getRepairs() {
-    return new Promise((resolve) => {
-      const repairs = JSON.parse(window.localStorage.getItem(KEY)) || [];
-      resolve(repairs);
-    });
+    return from(JSON.parse(window.localStorage.getItem(KEY)) || [])
   }
 
   removeRepair(id) {

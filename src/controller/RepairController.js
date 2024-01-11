@@ -1,4 +1,5 @@
 import repairService from '../service/RepairService';
+import { reduce } from 'rxjs/operators';
 
 class RepairController {
 
@@ -19,13 +20,9 @@ class RepairController {
   }
 
   getTotalTodoTime() {
-    return new Promise((resolve) => {
-      const INIT_REPAIRTIME = 0;
-      repairService.getRepairs().then((repairs) => {
-        const totalTodoTime = repairs.reduce((total, repair) => total + repair.estimatedTime, INIT_REPAIRTIME);
-        resolve(totalTodoTime);
-      });
-    });
+    return repairService.getRepairs().pipe(
+      reduce((total, repair) => total + repair.estimatedTime, 0)
+    );
   }
 }
 

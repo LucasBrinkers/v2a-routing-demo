@@ -34,7 +34,7 @@ export default class TotalTodoTime extends LitElement {
   }
 
   updateTodoTime() {
-    repairController.getTotalTodoTime().then((totalTodoTime) => {
+    repairController.getTotalTodoTime().subscribe((totalTodoTime) => {
       this.todoTime = totalTodoTime;
     });
   }

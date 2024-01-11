@@ -1,4 +1,6 @@
 import { LitElement, html, css } from 'lit';
+import { toArray } from 'rxjs/operators';
+
 import repairController from '../../controller/RepairController';
 import './TodoListItem';
 
@@ -30,7 +32,9 @@ export default class ToDoList extends LitElement {
   }
 
   updateList() {
-    repairController.getRepairs().then((repairs) => {
+    repairController.getRepairs().pipe(
+      toArray()
+    ).subscribe((repairs) => {
       this.todos = [...repairs];
     });
   }
